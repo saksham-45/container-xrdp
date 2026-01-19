@@ -12,7 +12,7 @@ RUN bash -c 'echo PREFERRED=/usr/bin/xfce4-session > /etc/sysconfig/desktop'
 
 RUN yum install -y xrdp xorgxrdp
 
-RUN yum -y install sudo nload passwd nano gedit
+RUN yum -y install sudo nload passwd nano gedit openssl
 
 COPY ./build/xrdp.ini /etc/xrdp/
 

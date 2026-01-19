@@ -10,7 +10,7 @@ RUN bash -c 'echo PREFERRED=/usr/bin/xfce4-session > /etc/sysconfig/desktop'
 
 RUN dnf install -y xrdp xorgxrdp
 
-RUN dnf -y install sudo nload passwd nano gedit
+RUN dnf -y install sudo nload passwd nano gedit openssl
 
 RUN dnf clean all
 

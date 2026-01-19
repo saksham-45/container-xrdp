@@ -20,18 +20,26 @@ Example:
 docker pull danchitnis/xrdp:ubuntu-xfce
 ```
 
-You have to give username, password, and sudo ability as input arguments to the docker run command. Hence, each user has three parameters. The process will exit if the input arguments are incorrect. Please run as interactive mode at first instance.
+### Secure Usage (Recommended)
 
-Example when username is _foo_, password is _bar_ and sudo ability is _no_:
+Pass user credentials via environment variables to prevent them from appearing in the process list of the host system.
+
+```bash
+docker run -d -p 33890:3389 -e XRDP_USERS="foo:bar:yes" danchitnis/xrdp:ubuntu-xfce
+```
+
+For multiple users, use a comma-separated list:
+
+```bash
+docker run -d -p 33890:3389 -e XRDP_USERS="alice:secret:yes,bob:password:no" danchitnis/xrdp:ubuntu-xfce
+```
+
+### Legacy Usage (Argument-based)
+
+Passing credentials via command-line arguments is still supported but **discouraged** due to security risks (visible via `ps` or `docker ps`).
 
 ```bash
 docker run -it -p 33890:3389 danchitnis/xrdp:ubuntu-xfce foo bar no
-```
-
-Similarly for detached mode
-
-```bash
-docker run -d -p 33890:3389 danchitnis/xrdp:ubuntu-xfce foo bar no
 ```
 
 Once running, open Remote Desktop Connection. Enter "localhost:33890" as the address.
